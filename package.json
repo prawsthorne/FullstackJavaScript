@@ -1,0 +1,20 @@
+{
+  "name": "fullstackjavascript",
+  "version": "1.0.0",
+  "description": "All the source code for the Full Stack JavaScript course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prawsthorne/FullstackJavaScript.git"
+  },
+  "keywords": [],
+  "author": "Peter Rawsthorne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prawsthorne/FullstackJavaScript/issues"
+  },
+  "homepage": "https://github.com/prawsthorne/FullstackJavaScript#readme"
+}
