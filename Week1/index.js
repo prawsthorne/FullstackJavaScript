@@ -12,7 +12,7 @@ function serveText(theText){
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write(theText);
     res.end();
-  }).listen(3001);
+  }).listen(3000);
 }
 
 function serveHtml(theHtml){
@@ -21,7 +21,7 @@ function serveHtml(theHtml){
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write(theHtml);
     res.end();
-  }).listen(3002);
+  }).listen(3000);
 }
 function serveFile(filename) {
   http.createServer(function (req, res) {
@@ -35,7 +35,7 @@ function serveFile(filename) {
         return res.end();
       }   
     });
-  }).listen(3003);
+  }).listen(3000);
 }
 
 function serveJson(jsonfile) {
@@ -50,5 +50,5 @@ function serveJson(jsonfile) {
         return res.end();
       }   
     });
-  }).listen(3004);
+  }).listen(3000);
 }
