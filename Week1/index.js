@@ -3,12 +3,12 @@ var fs = require('fs');
 
 //serveText('Hello World');
 //serveHtml('<html><body>Woot Woot</body></html>');
-//serveFile('test.html');
+//serveFile('first.html');
 serveJson('user.json')
 
 function serveText(theText){
   http.createServer(function (req, res) {
-    console.log('test was served.')
+    console.log('text was served.')
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write(theText);
     res.end();
