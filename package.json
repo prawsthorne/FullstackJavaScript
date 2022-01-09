@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/prawsthorne/FullstackJavaScript/issues"
   },
-  "homepage": "https://github.com/prawsthorne/FullstackJavaScript#readme"
+  "homepage": "https://github.com/prawsthorne/FullstackJavaScript#readme",
+  "dependencies": {
+    "moment": "^2.29.1"
+  }
 }
