@@ -18,13 +18,16 @@ myapp token <username>  generates a token for a given username, saves tokens to 
  *
  *************************/
 const fs = require("fs");
+const init = require('./init.js')
+
 const myArgs = process.argv.slice(2);
-if(myArgs.length > 1) console.log('the args: ', myArgs);
+if(myArgs.length > 1) console.log('the myapp.args: ', myArgs);
 
 switch (myArgs[0]) {
     case 'init':
     case 'i':
         console.log(myArgs[0], ' - initialize the app.');
+        init.initializeApp();
         break;
     case 'config':
     case 'c':
