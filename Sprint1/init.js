@@ -25,6 +25,7 @@ function createFiles() {
 
 function initializeApp() {
     console.log('initializeApp()');
+    
     switch (myArgs[1]) {
     case 'dir':
     case 'd':
