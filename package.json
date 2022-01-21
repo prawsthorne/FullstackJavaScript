@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/prawsthorne/FullstackJavaScript#readme",
   "dependencies": {
-    "moment": "^2.29.1"
+    "date-fns": "^2.28.0",
+    "moment": "^2.29.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

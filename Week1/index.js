@@ -3,8 +3,8 @@ var fs = require('fs');
 
 //serveText('Hello World');
 //serveHtml('<html><body>Woot Woot</body></html>');
-//serveFile('first.html');
-serveJson('user.json')
+serveFile('first.html');
+//serveJson('user.json')
 
 function serveText(theText){
   http.createServer(function (req, res) {
@@ -44,10 +44,10 @@ function serveJson(jsonfile) {
       if(err)
           console.log(err);
       else {
-        console.log('json file ' + jsonfile + ' was served.')
         res.writeHead(200, {'Content-Type': 'text/json'});
         res.write(data);
         return res.end();
+        console.log('json file ' + jsonfile + ' was served.')
       }   
     });
   }).listen(3000);

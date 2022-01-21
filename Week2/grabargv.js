@@ -3,6 +3,8 @@ const grab = flag => {
     return process.argv[indexAfterFlag];
 };
 
+console.log(process.argv);
+
 const username = grab("--username");
 const task = grab("--task");
 
