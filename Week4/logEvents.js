@@ -7,9 +7,9 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
 
-const logEvents = async (message) => {
-    const dateTime = `${format(new Date(), 'yyyyMMdd\tHH:mm:ss')}`;
-    const logItem = `${dateTime}\t${uuid()}\t${message}\n`;
+const logEvents = async (event, message) => {
+    const dateTime = `${format(new Date(), 'yyyy-MMM-dd\tHH:mm:ss')}`;
+    const logItem = `${dateTime}\t${uuid()}\t${event}\t${message}\n`;
     console.log(logItem);
     try {
         if(!fs.existsSync(path.join(__dirname, 'logs'))) {
