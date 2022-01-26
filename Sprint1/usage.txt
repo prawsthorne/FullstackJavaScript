@@ -5,6 +5,7 @@ Usage:
 
 myapp init              creates the folder structure, creates config files
 myapp config            displays the list of different config .json files
+myapp config --list     lists all the config settings
 myapp config <file>     displays a specific config files contents
 myapp token             displays a count and list of tokens
 myapp token <username>  generates a token for a given username, saves tokens to json file

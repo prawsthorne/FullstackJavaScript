@@ -38,6 +38,7 @@ const server = http.createServer((request, response) => {
             response.statusCode = 404;
             break;
     }
+    // fix this flow through error...
     fs.readFile(path, function(err, data) {
         if(err) {
             console.log(err);
@@ -50,7 +51,6 @@ const server = http.createServer((request, response) => {
         }   
       });
 });
-
 
 server.listen(3000, 'localhost', () => {
     console.log('listening on port 3000.')

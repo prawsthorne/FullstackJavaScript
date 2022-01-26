@@ -1,31 +1,51 @@
+// Add loggin to the CLI project by using eventLogging
+// load the logEvents module
+const logEvents = require('./logEvents');
+
+// define/extend an EventEmitter class
+const EventEmitter = require('events');
+class MyEmitter extends EventEmitter {};
+
+// initialize an new emitter object
+const myEmitter = new MyEmitter();
+// add the listener for the logEvent
+myEmitter.on('log', (event, level, msg) => logEvents(event, level, msg));
+
 const fs = require("fs");
 
 const myArgs = process.argv.slice(2);
-if(myArgs.length > 1) console.log('the init.args: ', myArgs);
+//Use this line of code to send the 3rd and beyond args to the console 
+//if(myArgs.length > 1) console.log('the init.args: ', myArgs);
 
 function listFolders() {
-    console.log('listFolders()');
+    if(DEBUG) 
+        console.log('listFolders()');
 
 }
 
 function listFiles() {
-    console.log('listFiles()');
+    if(DEBUG) 
+        console.log('listFiles()');
 
 }
 
 function createFolders() {
-    console.log('createFolders()');
+    if(DEBUG) 
+        console.log('createFolders()');
 
 }
 
 function createFiles() {
-    console.log('createFiles()');
+    if(DEBUG) 
+        console.log('createFiles()');
 
 }
 
 function initializeApp() {
-    console.log('initializeApp()');
-    
+    if(DEBUG) 
+        console.log('initializeApp()');
+    myEmitter.emit('log', 'initializeApp()', 'INFO', 'init option was called by CLI');
+
     switch (myArgs[1]) {
     case 'dir':
     case 'd':
@@ -36,9 +56,10 @@ function initializeApp() {
         break;
     default:
         fs.readFile(__dirname + "/usage.txt", (error, data) => {
-            if(error) throw error;
+            if(error) throw error;              
             console.log(data.toString());
         });
+        myEmitter.emit('log', 'initializeApp()', 'INFO', 'invalid CLI option, usage displayed');
     }
 }
 
