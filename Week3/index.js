@@ -5,6 +5,7 @@ var fs = require('fs');
 /*
 const server = http.createServer((request, response) => {
     console.log(request.url, request.method);
+    
     // when doing demo also show some routes to introduce the concept
     response.setHeader('Content_Type', 'text/plain');
     response.write('Welcome to the machine!');
@@ -15,14 +16,22 @@ const server = http.createServer((request, response) => {
 // file based text/html
 const server = http.createServer((request, response) => {
     let path = "./views/";
+    console.log(request.url, request.method);
     switch(request.url) {
         case '/':
             path += "index.html";
             response.statusCode = 200;
+            fetchFile(path);
             break;
         case '/about':
             path += "about.html";
             response.statusCode = 200;
+            fetchFile(path);
+            break;
+        case '/kittens':
+            path += "kittens.html";
+            response.statusCode = 200;
+            fetchFile(path);
             break;
         case '/about-me':
             response.statusCode = 301;
@@ -36,20 +45,22 @@ const server = http.createServer((request, response) => {
         default:
             path += "404.html";
             response.statusCode = 404;
+            fetchFile(path);
             break;
     }
-    // fix this flow through error...
-    fs.readFile(path, function(err, data) {
-        if(err) {
-            console.log(err);
-            response.end();
-        } else {
-            console.log('file was served.')
-            response.writeHead(200, {'Content-Type': 'text/html'});
-            // response.write(data);
-            response.end(data);
-        }   
-      });
+    function fetchFile(path) {    // fix this flow through error...
+        fs.readFile(path, function(err, data) {
+            if(err) {
+                console.log(err);
+                response.end();
+            } else {
+                console.log('file was served.')
+                response.writeHead(response.statusCode, {'Content-Type': 'text/html'});
+                // response.write(data);
+                response.end(data);
+            }   
+        });
+    };
 });
 
 server.listen(3000, 'localhost', () => {
