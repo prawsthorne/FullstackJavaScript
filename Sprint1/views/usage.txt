@@ -1,0 +1,13 @@
+
+myapp <command>
+
+Usage:
+
+myapp init all          creates the folder structure and config file
+myapp init mk           creates the folder structure
+myapp init cat          creates the config file with default settings
+myapp config            displays a list of the current config settings
+myapp config --reset    resets the config file with default settings
+myapp config --set      sets a specific config setting
+myapp token             displays a count of the token created
+myapp token <username>  generates a token for a given username, saves tokens to the json file

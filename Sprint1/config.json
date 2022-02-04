@@ -1,0 +1,7 @@
+{
+  "name": "AppConfigCLI",
+  "version": "1.0.0",
+  "description": "The Command Line Interface for the MyApp.",
+  "main": "myapp.js",
+  "superuser": "adm1n"
+}

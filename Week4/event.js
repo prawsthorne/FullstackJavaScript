@@ -5,12 +5,13 @@ class MyEmitter extends EventEmitter {};
 // initialize an new emitter object
 const myEmitter = new MyEmitter();
 // bind the 'example' event and set the function when event is emitted (fired)
-myEmitter.on('example', () => console.log(`my first 'example' bound emitter function`));
+myEmitter.addListener('example', () => console.log(`my first 'example' bound emitter function`));
 myEmitter.on('example', () => console.log(`my second 'example' bound emitter function`));
 myEmitter.on('example', () => console.log(`my third 'example' bound emitter function`));
 
 // bind the 'sample' event and set the function when event is emitted (fired)
 myEmitter.on('sample', () => console.log(`my first 'sample' bound emitter function`));
+myEmitter.on('sample', () => console.log(`my second 'sample' bound emitter function`));
 
 // count how many listeners have been bound
 console.log(`EXAMPLE: The 'example' event count: ` + myEmitter.listenerCount('example'));
