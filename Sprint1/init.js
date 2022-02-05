@@ -33,15 +33,7 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
 
-const folders = ['models', 'views', 'routes', 'logs'];
-let config = { 
-    name: 'AppConfigCLI',
-    version: '1.0.0',
-    description: 'The Command Line Interface (CLI) for the MyApp.',
-    main: 'myapp.js',
-    superuser: 'adm1n'
-};
-let init = ""
+const {folders, config, init} = require('./templates')
 
 const myArgs = process.argv.slice(2);
 //Use this line of code to send the 3rd and beyond args to the console 
