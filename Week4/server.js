@@ -5,7 +5,7 @@ var fs = require('fs');
 const logEvents = require('./logEvents');
 
 // add a global for debugging
-global.DEBUG = false;
+global.DEBUG = true;
 
 // define/extend an EventEmitter class
 const EventEmitter = require('events');

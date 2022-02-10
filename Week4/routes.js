@@ -5,7 +5,7 @@ class MyEmitter extends EventEmitter {};
 // initialize an new emitter object
 const myEmitter = new MyEmitter();
 
-myEmitter.on('route', (route, level, msg) => { 
+myEmitter.addListener('route', (route, level, msg) => { 
     const d = new Date();
     if(level === 'error')
         console.log(d.toLocaleString() + ' * ' + level.toUpperCase() + ' * the ' + route + ' ' + msg)
