@@ -22,7 +22,9 @@ myapp token <username>  generates a token for a given username, saves tokens to 
  *************************/
 global.DEBUG = false;
 const fs = require("fs");
-const { initializeApp } = require('./init.js')
+const { initializeApp } = require('./init.js');
+const { configApp } = require('./config.js');
+const { tokenApp } = require('./token.js');
 
 const myArgs = process.argv.slice(2);
 if(DEBUG) 
@@ -37,15 +39,17 @@ switch (myArgs[0]) {
     case 'config':
     case 'c':
         if(DEBUG) console.log(myArgs[0], ' - display the configuration file');
+        configApp();
         break;
     case 'token':
     case 't':
         if(DEBUG) console.log(myArgs[0], ' - generate a user token');
+        tokenApp();
         break;  
     case 'help':
     case 'h':
     default:
-        fs.readFile(__dirname + "/views/usage.txt", (error, data) => {
+        fs.readFile(__dirname + "/usage.txt", (error, data) => {
             if(error) throw error;
             console.log(data.toString());
         });

@@ -20,6 +20,7 @@ let newToken = JSON.parse(`{
     "username": "username",
     "token": "token",
     "expires": "1969-02-03 12:30:00"
+    "confirmed": "tbd"
 }`);
 
 newToken.created = `${format(now, 'yyyy-MM-dd HH:mm:ss')}`;

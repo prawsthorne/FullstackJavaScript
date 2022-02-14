@@ -3,6 +3,7 @@ const fsPromises = require('fs').promises;
 const path = require('path');
 
 let init = `
+
 myapp init <command>
 
 Usage:

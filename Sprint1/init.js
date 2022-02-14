@@ -3,9 +3,9 @@
  * Purpose: The routines to initialize the app
  * 
  * Commands:
-myapp init all      creates the folder structure and config file
-myapp init mk       creates the folder structure
-myapp init cat      creates the config file with default settings
+myapp init --all      creates the folder structure and config file
+myapp init --mk       creates the folder structure
+myapp init --cat      creates the config file with default settings
  *
  * Created Date: 09 Jan 2022
  * Authors:
@@ -13,6 +13,7 @@ myapp init cat      creates the config file with default settings
  * Revisions:
  * Date, Author, Description
  * 09 Jan 2022, PJR, File created
+ * 12 Feb 2022, PJR, added createFiles() for init, config, and token views
  *
  *************************/
 // Add logging to the CLI project by using eventLogging
@@ -33,7 +34,7 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
 
-const {folders, config, init} = require('./templates')
+const {folders, configjson, inittxt, usagetxt, configtxt, tokentxt} = require('./templates')
 
 const myArgs = process.argv.slice(2);
 //Use this line of code to send the 3rd and beyond args to the console 
@@ -58,7 +59,7 @@ function createFolders() {
         myEmitter.emit('log', 'init.createFolders()', 'INFO', 'All folders already existed.');
     } else if (mkcount <= folders.length) {
         if(DEBUG) console.log(mkcount + ' of ' + folders.length + ' folders were created.');
-        myEmitter.emit('log', 'init.createFolders()', 'INFO', mkcount + ' of ' + folders.length + ' folders already existed.');
+        myEmitter.emit('log', 'init.createFolders()', 'INFO', mkcount + ' of ' + folders.length + ' folders needed to be created.');
     } else {
         if(DEBUG) console.log('All folders successfully created.');
         myEmitter.emit('log', 'init.createFolders()', 'INFO', 'All folders successfully created.');
@@ -68,7 +69,7 @@ function createFolders() {
 function createFiles() {
     if(DEBUG) console.log('init.createFiles()');
     try {
-        let data = JSON.stringify(config, null, 2);
+        let data = JSON.stringify(configjson, null, 2);
         if(!fs.existsSync(path.join(__dirname, 'config.json'))) {
             fs.writeFile('config.json', data, (err) => {
                 if(DEBUG) console.log('Data written to config file');
@@ -77,6 +78,38 @@ function createFiles() {
         } else {
             myEmitter.emit('log', 'init.createFiles()', 'INFO', 'config.json already exists.'); 
         }
+        if(!fs.existsSync(path.join(__dirname, './views/usage.txt'))) {
+            fs.writeFile('./views/usage.txt', usagetxt, (err) => {
+                if(DEBUG) console.log('Data written to usage.txt file');
+                myEmitter.emit('log', 'init.createFiles()', 'INFO', './views/usage.txt successfully created.');
+            });
+        } else {
+            myEmitter.emit('log', 'init.createFiles()', 'INFO', './views/usage.txt already exists.'); 
+        }
+        if(!fs.existsSync(path.join(__dirname, './views/init.txt'))) {
+            fs.writeFile('./views/init.txt', inittxt, (err) => {
+                if(DEBUG) console.log('Data written to init.txt file');
+                myEmitter.emit('log', 'init.createFiles()', 'INFO', './views/init.txt successfully created.');
+            });
+        } else {
+            myEmitter.emit('log', 'init.createFiles()', 'INFO', './views/init.txt already exists.'); 
+        }   
+        if(!fs.existsSync(path.join(__dirname, './views/config.txt'))) {
+            fs.writeFile('./views/config.txt', configtxt, (err) => {
+                if(DEBUG) console.log('Data written to config.txt file');
+                myEmitter.emit('log', 'init.createFiles()', 'INFO', './views/config.txt successfully created.');
+            });
+        } else {
+            myEmitter.emit('log', 'init.createFiles()', 'INFO', './views/config.txt already exists.'); 
+        }
+        if(!fs.existsSync(path.join(__dirname, './views/token.txt'))) {
+            fs.writeFile('./views/token.txt', tokentxt, (err) => {
+                if(DEBUG) console.log('Data written to token.txt file');
+                myEmitter.emit('log', 'init.createFiles()', 'INFO', './views/token.txt successfully created.');
+            });
+        } else {
+            myEmitter.emit('log', 'init.createFiles()', 'INFO', './views/token.txt already exists.'); 
+        }     
     } catch(err) {
         console.log(err);
     }
@@ -88,17 +121,18 @@ function initializeApp() {
     myEmitter.emit('log', 'init.initializeApp()', 'INFO', 'init option was called by CLI');
 
     switch (myArgs[1]) {
-    case 'all':
-    case 'a':
+    case '--all':
         createFolders();
         createFiles();
         break;
-    case 'cat':
+    case '--cat':
         createFiles();
         break;
-    case 'mk':
+    case '--mk':
         createFolders();
         break;
+    case '--help':
+    case '--h':
     default:
         fs.readFile(__dirname + "/views/init.txt", (error, data) => {
             if(error) throw error;              

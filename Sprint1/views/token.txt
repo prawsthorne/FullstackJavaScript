@@ -1,0 +1,9 @@
+
+
+myapp <command> <option>
+
+Usage:
+
+myapp token --count             displays a count of the token created
+myapp token --new <username>    generates a token for a given username, saves tokens to the json file
+myapp token --fetch <username>  fetches a token for a given username
