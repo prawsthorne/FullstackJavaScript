@@ -33,18 +33,55 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
 
+const { configjson } = require('./templates')
+
 const myArgs = process.argv.slice(2);
 
 function displayConfig() {
     if(DEBUG) console.log('config.displayConfig()');
+    fs.readFile(__dirname + "/json/config.json", (error, data) => {
+        if(error) throw error;         
+        console.log(JSON.parse(data));
+    });
+    myEmitter.emit('log', 'config.displayConfig()', 'INFO', 'config.json displayed');
 }
 
 function resetConfig() {
     if(DEBUG) console.log('config.resetConfig()');
+    let configdata = JSON.stringify(configjson, null, 2);
+    fs.writeFile(__dirname + '/json/config.json', configdata, (error) => {
+        if(error) throw error;   
+        if(DEBUG) console.log('Config file reset to original state');
+        myEmitter.emit('log', 'config.resetConfig()', 'INFO', 'config.json reset to original state.');
+    });
 }
 
 function setConfig() {
     if(DEBUG) console.log('config.setConfig()');
+    if(DEBUG) console.log(myArgs);
+    let match = false;
+    fs.readFile(__dirname + "/json/config.json", (error, data) => {
+        if(error) throw error;         
+        if(DEBUG) console.log(JSON.parse(data));
+        let cfg = JSON.parse(data);
+        for(let key of Object.keys(cfg)){
+            if(key === myArgs[2]) {
+                cfg[key] = myArgs[3];
+                match = true;
+            }
+        }
+        if(!match) {
+            console.log(`invalid key: ${myArgs[2]}, try another.`)
+            myEmitter.emit('log', 'config.setConfig()', 'WARNING', `invalid key: ${myArgs[2]}`);
+        }
+        if(DEBUG) console.log(cfg);
+        data = JSON.stringify(cfg, null, 2);
+        fs.writeFile(__dirname + '/json/config.json', data, (error) => {
+            if (error) throw error;
+            if(DEBUG) console.log('Config file successfully updated.');
+            myEmitter.emit('log', 'config.setConfig()', 'INFO', `config.json "${myArgs[2]}": updated to "${myArgs[3]}"`);
+        });
+    });
 }
 
 function configApp() {

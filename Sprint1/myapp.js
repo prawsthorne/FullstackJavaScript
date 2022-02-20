@@ -3,14 +3,7 @@
  * Purpose: The main routines to start the initialization app
  * 
  * Commands:
-myapp init all          creates the folder structure and config file
-myapp init mk           creates the folder structure
-myapp init cat          creates the config file with default settings
-myapp config            displays a list of the current config settings
-myapp config --reset    resets the config file with default settings
-myapp config --set      sets a specific config setting
-myapp token             displays a count of the token created
-myapp token <username>  generates a token for a given username, saves tokens to the json file
+ * see usage.txt file
  *
  * Created Date: 09 Jan 2022
  * Authors:
@@ -46,8 +39,8 @@ switch (myArgs[0]) {
         if(DEBUG) console.log(myArgs[0], ' - generate a user token');
         tokenApp();
         break;  
-    case 'help':
-    case 'h':
+    case '--help':
+    case '--h':
     default:
         fs.readFile(__dirname + "/usage.txt", (error, data) => {
             if(error) throw error;

@@ -34,7 +34,7 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
 
-const {folders, configjson, inittxt, usagetxt, configtxt, tokentxt} = require('./templates')
+const {folders, configjson, tokenjson, inittxt, usagetxt, configtxt, tokentxt} = require('./templates')
 
 const myArgs = process.argv.slice(2);
 //Use this line of code to send the 3rd and beyond args to the console 
@@ -69,15 +69,24 @@ function createFolders() {
 function createFiles() {
     if(DEBUG) console.log('init.createFiles()');
     try {
-        let data = JSON.stringify(configjson, null, 2);
-        if(!fs.existsSync(path.join(__dirname, 'config.json'))) {
-            fs.writeFile('config.json', data, (err) => {
+        let configdata = JSON.stringify(configjson, null, 2);
+        if(!fs.existsSync(path.join(__dirname, './json/config.json'))) {
+            fs.writeFile('./json/config.json', configdata, (err) => {
                 if(DEBUG) console.log('Data written to config file');
                 myEmitter.emit('log', 'init.createFiles()', 'INFO', 'config.json successfully created.');
             });
         } else {
             myEmitter.emit('log', 'init.createFiles()', 'INFO', 'config.json already exists.'); 
         }
+        let tokendata = JSON.stringify(tokenjson, null, 2);
+        if(!fs.existsSync(path.join(__dirname, './json/token.json'))) {
+            fs.writeFile('./json/token.json', tokendata, (err) => {
+                if(DEBUG) console.log('Data written to token file');
+                myEmitter.emit('log', 'init.createFiles()', 'INFO', 'token.json successfully created.');
+            });
+        } else {
+            myEmitter.emit('log', 'init.createFiles()', 'INFO', 'token.json already exists.'); 
+        }        
         if(!fs.existsSync(path.join(__dirname, './views/usage.txt'))) {
             fs.writeFile('./views/usage.txt', usagetxt, (err) => {
                 if(DEBUG) console.log('Data written to usage.txt file');

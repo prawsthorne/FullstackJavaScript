@@ -3,9 +3,13 @@
  * Purpose: The routines to configure the app
  * 
  * Commands:
-myapp token --count             displays a count of the token created
-myapp token --new <username>    generates a token for a given username, saves tokens to the json file
-myapp token --fetch <username>  fetches a token for a given username
+myapp token --count                     displays a count of the tokens created
+myapp token --new <username>            generates a token for a given username, saves tokens to the json file
+myapp token --upd p <username> <phone>  updates the json entry with phone number
+myapp token --upd e <username> <email>  updates the json entry with email
+myapp token --search u <username>       fetches a token for a given username
+myapp token --search e <email>          fetches a token for a given email
+myapp token --search p <phone>          fetches a token for a given phone number
  *
  * Created Date: 14 Feb 2022
  * Authors:
@@ -37,14 +41,25 @@ const myArgs = process.argv.slice(2);
 
 function tokenCount() {
     if(DEBUG) console.log('token.tokenCount()');
+    let cnt = 0;
+    myEmitter.emit('log', 'token.tokenCount()', 'INFO', `Current token count is ${cnt}.`);
 }
 
 function newToken() {
     if(DEBUG) console.log('token.newToken()');
+    let tkn = 'yks0b4';
+    let user = 'HitMonkey';
+    myEmitter.emit('log', 'token.newToken()', 'INFO', `New token ${tkn} was created for ${user}.`);
 }
 
-function fetchToken() {
-    if(DEBUG) console.log('token.fetchToken()');
+function updateToken() {
+    if(DEBUG) console.log('token.updateToken()');
+    myEmitter.emit('log', 'token.updateToken()', 'INFO', `Token record was successfully updated.`);
+}
+
+function searchToken() {
+    if(DEBUG) console.log('token.searchToken()');
+    myEmitter.emit('log', 'token.searchToken()', 'INFO', `Token record was found.`);
 }
 
 function tokenApp() {
@@ -58,8 +73,11 @@ function tokenApp() {
     case '--new':
         newToken();
         break;
-    case '--fetch':
-        fetchToken();
+    case '--upd':
+        updateToken();
+        break;
+    case '--search':
+        searchToken();
         break;
     case '--help':
     case '--h':
