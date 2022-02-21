@@ -79,10 +79,10 @@ function createFiles() {
             myEmitter.emit('log', 'init.createFiles()', 'INFO', 'config.json already exists.'); 
         }
         let tokendata = JSON.stringify(tokenjson, null, 2);
-        if(!fs.existsSync(path.join(__dirname, './json/token.json'))) {
-            fs.writeFile('./json/token.json', tokendata, (err) => {
+        if(!fs.existsSync(path.join(__dirname, './json/tokens.json'))) {
+            fs.writeFile('./json/tokens.json', tokendata, (err) => {
                 if(DEBUG) console.log('Data written to token file');
-                myEmitter.emit('log', 'init.createFiles()', 'INFO', 'token.json successfully created.');
+                myEmitter.emit('log', 'init.createFiles()', 'INFO', 'tokens.json successfully created.');
             });
         } else {
             myEmitter.emit('log', 'init.createFiles()', 'INFO', 'token.json already exists.'); 

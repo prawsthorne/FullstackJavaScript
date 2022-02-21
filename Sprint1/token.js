@@ -4,12 +4,14 @@
  * 
  * Commands:
 myapp token --count                     displays a count of the tokens created
+myapp token --list                      list all the usernames with tokens
 myapp token --new <username>            generates a token for a given username, saves tokens to the json file
 myapp token --upd p <username> <phone>  updates the json entry with phone number
 myapp token --upd e <username> <email>  updates the json entry with email
-myapp token --search u <username>       fetches a token for a given username
-myapp token --search e <email>          fetches a token for a given email
-myapp token --search p <phone>          fetches a token for a given phone number
+myapp token --fetch <username>          fetches a user record for a given username
+myapp token --search u <username>       searches a token for a given username
+myapp token --search e <email>          searches a token for a given email
+myapp token --search p <phone>          searches a token for a given phone number
  *
  * Created Date: 14 Feb 2022
  * Authors:
@@ -34,47 +36,154 @@ myEmitter.on('log', (event, level, msg) => logEvents(event, level, msg));
 
 // Node.js common core global modules
 const fs = require('fs');
-const fsPromises = require('fs').promises;
 const path = require('path');
+
+const crc32 = require('crc/crc32');
+const { format } = require('date-fns');
 
 const myArgs = process.argv.slice(2);
 
 function tokenCount() {
     if(DEBUG) console.log('token.tokenCount()');
-    let cnt = 0;
-    myEmitter.emit('log', 'token.tokenCount()', 'INFO', `Current token count is ${cnt}.`);
-}
+    fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
+        if(error) throw error; 
+        let tokens = JSON.parse(data);
+        let cnt = Object.keys(tokens).length;
+        console.log(`Current token count is ${cnt}.`);
+        myEmitter.emit('log', 'token.tokenCount()', 'INFO', `Current token count is ${cnt}.`);
+    });
+};
 
-function newToken() {
+function tokenList() {
+    if(DEBUG) console.log('token.tokenCount()');
+    fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
+        if(error) throw error; 
+        let tokens = JSON.parse(data);
+        console.log('** User List **')
+        tokens.forEach(obj => {
+            console.log(' * ' + obj.username + ': ' + obj.token);
+        });
+        myEmitter.emit('log', 'token.tokenList()', 'INFO', `Current token list was displayed.`);
+    });
+};
+
+function newToken(username) {
     if(DEBUG) console.log('token.newToken()');
-    let tkn = 'yks0b4';
-    let user = 'HitMonkey';
-    myEmitter.emit('log', 'token.newToken()', 'INFO', `New token ${tkn} was created for ${user}.`);
+
+    let newToken = JSON.parse(`{
+        "created": "1969-01-31 12:30:00",
+        "username": "username",
+        "email": "user@example.com",
+        "phone": "5556597890",
+        "token": "token",
+        "expires": "1969-02-03 12:30:00",
+        "confirmed": "tbd"
+    }`);
+
+    let now = new Date();
+    let expires = addDays(now, 3);
+
+    newToken.created = `${format(now, 'yyyy-MM-dd HH:mm:ss')}`;
+    newToken.username = username;
+    newToken.token = crc32(username).toString(16);
+    newToken.expires = `${format(expires, 'yyyy-MM-dd HH:mm:ss')}`;
+
+    fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
+        if(error) throw error; 
+        let tokens = JSON.parse(data);
+        tokens.push(newToken);
+        userTokens = JSON.stringify(tokens);
+    
+        fs.writeFile(__dirname + '/json/tokens.json', userTokens, (err) => {
+            if (err) console.log(err);
+            else { 
+                console.log(`New token ${newToken.token} was created for ${username}.`);
+                myEmitter.emit('log', 'token.newToken()', 'INFO', `New token ${newToken.token} was created for ${username}.`);
+            }
+        })
+        return newToken.token;
+    });
+
 }
 
-function updateToken() {
+function updateToken(argv) {
     if(DEBUG) console.log('token.updateToken()');
-    myEmitter.emit('log', 'token.updateToken()', 'INFO', `Token record was successfully updated.`);
+    if(DEBUG) console.log(argv);
+    fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
+        if(error) throw error; 
+        let tokens = JSON.parse(data);
+        tokens.forEach(obj => {
+            if(obj.username === argv[3]) {
+                if(DEBUG) console.log(obj);
+                switch (argv[2]) {
+                    case 'p':
+                    case 'P':
+                        obj.phone = argv[4];
+                        break;
+                    case 'e':
+                    case 'E':
+                        obj.email = argv[4];
+                        break;
+                    default:
+                }
+                if(DEBUG) console.log(obj);
+            }
+        });
+        userTokens = JSON.stringify(tokens);
+        fs.writeFile(__dirname + '/json/tokens.json', userTokens, (err) => {
+            if (err) console.log(err);
+            else { 
+                console.log(`Token record for ${argv[3]} was updated with ${argv[4]}.`);
+                myEmitter.emit('log', 'token.updateToken()', 'INFO', `Token record for ${argv[3]} was updated with ${argv[4]}.`);
+            }
+        })
+    });
+}
+
+function fetchRecord(username) {
+    if(DEBUG) console.log('token.fetchRecord()');
+    fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
+        if(error) throw error; 
+        let tokens = JSON.parse(data);
+        tokens.forEach(obj => {
+            if(obj.username === username) {
+                console.log(obj);
+                myEmitter.emit('log', 'token.fetchRecord()', 'INFO', `Token record for ${username} was displayed.`);
+            }
+        });
+    });
 }
 
 function searchToken() {
     if(DEBUG) console.log('token.searchToken()');
-    myEmitter.emit('log', 'token.searchToken()', 'INFO', `Token record was found.`);
+    myEmitter.emit('log', 'token.searchToken()', 'INFO', `Token was found for xxx.`);
+}
+
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
 }
 
 function tokenApp() {
     if(DEBUG) console.log('tokenApp()');
-    myEmitter.emit('log', 'token.tokenApp()', 'INFO', 'config option was called by CLI');
+    myEmitter.emit('log', 'token.tokenApp()', 'INFO', 'token option was called by CLI');
 
     switch (myArgs[1]) {
     case '--count':
         tokenCount();
         break;
+    case '--list':
+        tokenList();
+        break; 
     case '--new':
-        newToken();
+        newToken(myArgs[2]);
         break;
     case '--upd':
-        updateToken();
+        updateToken(myArgs);
+        break;
+    case '--fetch':
+        fetchRecord(myArgs[2]);
         break;
     case '--search':
         searchToken();

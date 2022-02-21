@@ -7,3 +7,4 @@ Usage:
 myapp config --show     displays a list of the current config settings
 myapp config --reset    resets the config file with default settings
 myapp config --set      sets a specific config setting
+
