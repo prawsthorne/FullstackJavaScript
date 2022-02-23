@@ -101,9 +101,8 @@ function newToken(username) {
                 myEmitter.emit('log', 'token.newToken()', 'INFO', `New token ${newToken.token} was created for ${username}.`);
             }
         })
-        return newToken.token;
     });
-
+    return newToken.token;
 }
 
 function updateToken(argv) {
@@ -201,4 +200,5 @@ function tokenApp() {
 
 module.exports = {
     tokenApp,
+    newToken,
   }
