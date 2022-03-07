@@ -1,0 +1,18 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="create content">
+            <form>
+                <label for="title">Film title:</label>
+                <input type="text" id="title" name="title" required>
+                <label for="synopsis">synopsis:</label>
+                <textarea id="synopsis" name="synopsis" required></textarea>
+                <label for="rating">rating:</label>
+                <input type="text" id="rating" name="rating" required>
+                <button>Submit</button>
+              </form>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>

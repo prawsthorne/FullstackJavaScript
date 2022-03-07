@@ -43,14 +43,20 @@ const { format } = require('date-fns');
 
 const myArgs = process.argv.slice(2);
 
-function tokenCount() {
+var tokenCount = function() {
     if(DEBUG) console.log('token.tokenCount()');
-    fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
-        if(error) throw error; 
-        let tokens = JSON.parse(data);
-        let cnt = Object.keys(tokens).length;
-        console.log(`Current token count is ${cnt}.`);
-        myEmitter.emit('log', 'token.tokenCount()', 'INFO', `Current token count is ${cnt}.`);
+    return new Promise(function(resolve, reject) {
+        fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
+            if(error)  
+                reject(error); 
+            else {
+                let tokens = JSON.parse(data);
+                let count = Object.keys(tokens).length;
+                console.log(`Current token count is ${count}.`);
+                myEmitter.emit('log', 'token.tokenCount()', 'INFO', `Current token count is ${count}.`);
+                resolve(count);
+            };
+        });
     });
 };
 
@@ -101,6 +107,7 @@ function newToken(username) {
                 myEmitter.emit('log', 'token.newToken()', 'INFO', `New token ${newToken.token} was created for ${username}.`);
             }
         })
+        
     });
     return newToken.token;
 }
@@ -139,17 +146,19 @@ function updateToken(argv) {
     });
 }
 
-function fetchRecord(username) {
+var fetchRecord = function(username) {
     if(DEBUG) console.log('token.fetchRecord()');
     fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
-        if(error) throw error; 
-        let tokens = JSON.parse(data);
-        tokens.forEach(obj => {
-            if(obj.username === username) {
-                console.log(obj);
-                myEmitter.emit('log', 'token.fetchRecord()', 'INFO', `Token record for ${username} was displayed.`);
-            }
-        });
+        if(error) console.log(error);
+        else {
+            let tokens = JSON.parse(data);
+            tokens.forEach(obj => {
+                if(obj.username === username) {
+                    console.log(obj);
+                    myEmitter.emit('log', 'token.fetchRecord()', 'INFO', `Token record for ${username} was displayed.`);
+                };
+            });
+        };
     });
 }
 
@@ -201,4 +210,6 @@ function tokenApp() {
 module.exports = {
     tokenApp,
     newToken,
+    tokenCount,
+    fetchRecord,
   }

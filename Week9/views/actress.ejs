@@ -1,0 +1,16 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="actors content">
+            <h2>Most Popular Film Actress</h2>
+            <% if (bestactress.length > 0) { %>
+                <% bestactress.forEach(best => { %>
+                    <h3 class="name"> <%= best.actor %> </h3>
+                    <p class="film"> <%= best.film %>  </p>
+                <% }) %>
+            <% } %>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>

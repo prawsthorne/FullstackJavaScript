@@ -20,7 +20,10 @@
   "dependencies": {
     "crc": "^4.1.0",
     "date-fns": "^2.28.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
     "moment": "^2.29.1",
+    "morgan": "^1.10.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
