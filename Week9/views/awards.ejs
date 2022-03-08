@@ -1,0 +1,18 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="awards content">
+            <h2>Films with Awards.</h2>
+            <% if (awards.length > 0) { %>
+                <% awards.forEach(award => { %>
+                    <p class="film"> 
+                        <b><%= award.title %></b> 
+                        <%= award.name %>
+                    </p>
+                <% }) %>
+            <% } %>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>
