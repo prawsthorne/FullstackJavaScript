@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAwards }= require('../services/awards.dal')
+const { getAwards, getAwardsByFilmId } = require('../services/awards.dal')
 
 router.use(express.static('public'));
 
@@ -10,7 +10,8 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    res.send('Specific Award.');
+    let awards = await getAwardsByFilmId(req.params.id);
+    res.render('filmawards', {awards});
 });
 
 router.put('/:id', async (req, res) => {

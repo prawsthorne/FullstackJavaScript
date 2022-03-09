@@ -6,10 +6,11 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(morgan('short'));
+app.use(express.urlencoded({ extended: false }));
 
-app.set('view engine', 'ejs');
 const actressRouter = require('./routes/actress')
 const awardsRouter = require('./routes/awards')
 

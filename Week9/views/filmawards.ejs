@@ -1,0 +1,27 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="awards content">
+            <h2>Film Awards.</h2>
+            <% if (awards.length > 0) { %>
+                <% awards.forEach((award, index) => { %>
+                    <% if(index === 0) { %>
+                        <p class="film">
+                        <b><%= award.title %></b> 
+                        <%= award.release_year %>
+                        length: <%= award.length %>
+                        rating: <%= award.rating %>
+                        </p><ol>
+                    <% } %>
+                        </br><p class="award">
+                        <li>
+                        <%= award.name %>
+                        </li>
+                    </p>
+                <% }) %></ol>
+            <% } %>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>

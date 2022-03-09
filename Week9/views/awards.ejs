@@ -7,8 +7,9 @@
             <% if (awards.length > 0) { %>
                 <% awards.forEach(award => { %>
                     <p class="film"> 
-                        <b><%= award.title %></b> 
-                        <%= award.name %>
+                        <a href="<%= award.film_id %>">
+                        <b><%= award.title %></b></a> has 
+                        <%= award.count %> awards.
                     </p>
                 <% }) %>
             <% } %>
