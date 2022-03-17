@@ -1,0 +1,17 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="stores content">
+            <h2>Choose one of our convenient locations</h2>
+            <% if (stores.length > 0) { %>
+                <% stores.forEach(store => { %>
+                    <p class="store"><b><a href="<%= store.store_id %>"><%= store.store_name %></a></b> - <%= store.address%>, 
+                        <%= store.city%>, <%= store.country%> <%= store.postal_code%>
+                    </p> 
+                <% }) %>
+            <% } %>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>

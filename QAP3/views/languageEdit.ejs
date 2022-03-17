@@ -1,0 +1,15 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="create content">
+            <form action="/languages" method="PATCH">
+                <label>Edit Language:
+                    <input type="text" id="<%= locals.theId %>" name="language" value="<%= locals.theLanguage %>" required>
+                </label>
+                <button>PATCH</button>
+            </form>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>

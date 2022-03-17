@@ -1,0 +1,5 @@
+const stores = [
+        {mgr_name: 'Bilbo Baggins', email: 'bbaggins@theshire.com', address: '234 long way', store_name: big feet', city: 'Shireville', country: 'Canada', postal_code: 'A3R5T2'},
+        {mgr_name: 'Gandalf', email: 'gandalf@theshire.com', address: '35 fara way', store_name: 'wizard', city: 'Magicville', country: 'Canada', postal_code: 'A2G6Y4'},
+        {mgr_name: 'Frodo Baggins', email: 'fbaggins@theshire.com', address: '49 long way', store_name: 'restless', city: 'Shireville', country: 'Canada', postal_code: 'A3R6E2'}
+];

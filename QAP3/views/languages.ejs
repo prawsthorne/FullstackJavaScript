@@ -1,0 +1,23 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="create content">
+            <form action="/languages" method="POST">
+                <b>Current Languages: </b>
+                <% if (languages.length > 0) { %></br>
+                    <% languages.forEach(language => { %> 
+                        <%=language.name %>:
+                        <a href="<%=language.language_id%>/edit?language=<%=language.name%>">edit</a>&nbsp;
+                        <a href="<%=language.language_id%>/delete?language=<%=language.name%>">delete</a></br>
+                    <% }) %>
+                <% } %>
+                <label>Add Language:
+                    <input type="text" id="language" name="language" value="<%= locals.theLanguage %>" required>
+                </label>
+                <button>POST</button>
+            </form>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>

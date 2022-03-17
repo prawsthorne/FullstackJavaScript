@@ -1,0 +1,8 @@
+As a customer of dvdrental I would like to have a web page so I can view the films I have rented in the last 12 months.
+
+As a store manager at dvdrental I would like to have a web page so I can view the films that have not been returned and the customer who rented the film.
+
+As the owner of dvdrental I would like to have a web page so I can view the top ten rental films by rental dollars earned for a particular store.
+
+As the owner of dvdrental I would like to have a web page so I can view the top five rental films by language for a particular store.
+

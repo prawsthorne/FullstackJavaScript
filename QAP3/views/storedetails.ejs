@@ -1,0 +1,45 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="stores content">
+            <h2>Contact us at any time!</h2>
+            <% if (store.length > 0) 
+                var store = store[0]; { %>
+                <p class="store"><b><%= store.store_name %></b> - <%= store.address%>, 
+                    <%= store.city%>, <%= store.country%> <%= store.postal_code%></br>
+                    Manager: <%= store.mgr_name%></br>
+                    email: <%= store.email%></br>
+                    phone: <%= store.phone%> 
+                </p> 
+            <% } %>
+            <div class="dropdown">
+            </br>Best earners by Store and Language(s):</br>
+                <button class="dropbtn">Languages</button>
+                <div class="dropdown-content">
+                    <% if (languages.length > 0) { %>
+                        <% languages.forEach(language => { %> 
+                            <% if (language.name === 'All') { %>
+                                <a href="<%= store.store_id%>"><%= language.name %></a>
+                            <% } else { %>
+                                <a href="?language=<%= language.name%>"><%= language.name %></a>
+                            <% } %>
+                        <% }) %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="revenue content">
+                <% if (revenue.length > 0) { %>
+                    <b><%= language%></b>
+                    <% revenue.forEach(rev => { %>
+                        <p class="films">
+                            <%= rev.title%>, <%= rev.monies%>
+                            <% if (language === undefined) { %> - <%= rev.name %> <% }; %>
+                        </p> 
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>

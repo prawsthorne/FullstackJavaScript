@@ -1,0 +1,28 @@
+"For the best editing experience, upload this .csv as a rubric in Microsoft Teams.",,,,,,,,,,
+,,,,,,,,,,
+Full-Stack Integrated QAP3,100,,,,,,,,,
+"Design and implement a database VIEW to fetch data from the dvdrental database. Build a node.js app using Express, EJS, and pg to access the database via a RESTful API.",,,,,,,,,,
+,,,,,,,,,,
+,Complete with Distinction,5,Complete,4,Mostly Complete,3,Partially Complete,2,Incomplete,1
+Designed and Implemented a database VIEW that fetches the data required by the chosen user story.,Database design includes a Many-to-Many relationship implemented within three or more database tables.,,Database design includes one well designed table.,,Database design includes one database table with poor field naming and poor data typing.,,Database design is incomplete. Database table is only partially implemented.,,No database table has been implemented or table implemented show no understanding of good database design.,
+10,,,,,,,,,,
+Created a well designed file naming and folder structure for a modular full stack application. ,"Database and tables all have CREATE statements with well designed PK and FK constraints implemented.
+",,Database and table have CREATE statements including auto-increment PK constraint.,,Database and table have CREATE statements without PK constraint. Naming and data types reflect what is in design.,,Database and table have CREATE statements are only partially complete.,,Database and table have CREATE statement does not exist or shows no understanding of database and table creation.,
+10,,,,,,,,,,
+"Developed a multi-file project which successfully implements a data access layer service, routes, and a user interface view. The modules successfully implement the features described in the user story.",Solution includes two well structured files with good use of space and code structure. All functions have comments to explain functionality and have a section for revision history.,,Solution includes two well structured files with use of space and reasonable code structure. Code comments are terse.,,Solution includes two  structured files with use of space and reasonable code structure. Code comments are terse or non-existent.,,Solution does not include two structured files and / or the files are poorly organized. Code comments are terse or non-existent.,,File and code modularization is non-exitent.  Code is unmanageble.,
+25,,,,,,,,,,
+Well designed and correctly implemented DAL module for fetching data from the postgresql database VIEW.,Exemplary work. RESTful API features are comprehensive for the M:M database table design. Variety of API parameters supported to execute SQL WHERE clauses for database   searching. RESTful API design is easily understood.,,RESTful API is complete to retrieve data from single table database design. Ability to fetch all data and a specific row as determined by PK value are both present. RESTful API design is well though out.,,RESTful API is mostly complete with ability to retrieve data from single table database design. Ability to fetch data and a specific row as determined by PK value are both present. RESTful API design could be improved.,,RESTful API is partially complete with some ability to retrieve data from single table database design. Ability to fetch data and a specific row as determined by PK value are NOT both present. RESTful API design could be improved.,,Project looks to have been attempted and is incomplete. Student was unable to implement a working solution.,
+15,,,,,,,,,,
+Well designed and correctly implemented routes which control the logical flow of the application.,,,,,,,,,,
+15,,,,,,,,,,
+Well designed and correctly implemented user inteface views programmed in html with embedded javascript (ejs).,,,,,,,,,,
+15,,,,,,,,,,
+"QAP correctly handed in.
+","All problem files are present within a single zip file as requested. Archived files are well named to ease evaluation of QAP. Items are very well organized enabling the instructor to assess completion in a quick and easy manner.
+",,"All problem files are present within a single zip file as requested. Archived files are well named to ease evaluation of QAP. 
+",,"Most problem files are present within a single zip file as requested. Archived files are named but difficult to assess each problems solution.
+",,"Less than half of the problem files are present within a single zip file as requested, or multiple zip files were provided. Archived files are named, but difficult to assess each problems solution.
+",,"Very difficult to assess QAP completion. Additional work is required.
+",
+10,,,,,,,,,,
+v.11p,,,,,,,,,,

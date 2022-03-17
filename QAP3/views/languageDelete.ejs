@@ -1,0 +1,15 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="create content">
+            <form action="/languages" method="DELETE">
+                <label>Are you sure you want to delete this Language?
+                    <input type="text" id="<%= locals.theId %>" name="language" value="<%= locals.theLanguage %>" readonly>
+                </label>
+                <button>DELETE</button>
+            </form>
+        </div>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+</html>
