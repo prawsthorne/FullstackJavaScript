@@ -32,6 +32,7 @@ router.post('/', async (req, res) => {
 
 // PUT, PATCH, and DELETE are part of HTTP, not a part of HTML
 // Therefore, <form method="PUT" ...> doesn't work, but it does work for RESTful API
+/*
 router.put('/:id', async (req, res) => {
     console.log('put: ' + req.params.id);
  //   await languagesDal.putLanguage(req.params.id);
@@ -49,5 +50,5 @@ router.delete('/:id', async (req, res) => {
  //   await languagesDal.deleteLanguage(req.params.id);
     res.redirect('/languages/');
 });
-
+*/
 module.exports = router
