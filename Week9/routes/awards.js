@@ -18,7 +18,7 @@ router.put('/:id', async (req, res) => {
     res.send('Update Award.');
 });
 
-router.post('/new', async (req, res) => {
+router.post('/', async (req, res) => {
     res.send('New Award.');
 });
 
