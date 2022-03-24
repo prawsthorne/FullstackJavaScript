@@ -1,0 +1,5 @@
+As a store manager at dvdrental I would like to have a web page that lists all the films that have won film awards and are available in my store.
+
+As a store manager at dvdrental I would like to have a web page where I could add and update the list of available film awards.
+
+

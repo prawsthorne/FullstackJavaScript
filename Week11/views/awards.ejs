@@ -1,0 +1,18 @@
+<html lang="en">
+    <body>
+    <h1>AWARDS</h1>
+    <div class="awards content">
+        <h2>Films with Awards.</h2>
+        <% if (awards.length > 0) { %>
+            <% awards.forEach(oatmeal => { %>
+                <p class="film award"> 
+                    <b><%= oatmeal.title %></b> <%= oatmeal.release_year %> 
+                    Rating: <%= oatmeal.rating %> <%= oatmeal.name %> 
+                </p>
+            <% }) %>
+        <% } else { %>
+            No records found.
+        <% } %>
+    </div>
+    </body>
+</html>

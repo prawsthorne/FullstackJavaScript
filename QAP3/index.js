@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
+const methodOverride = require('method-override')
 
 const PORT = process.env.PORT || 3000;
 
@@ -11,6 +12,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
+app.use(methodOverride('_method'));
 
 app.listen(PORT, () => {
     console.log(`Simple app running on port ${PORT}.`)

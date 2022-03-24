@@ -6,3 +6,8 @@ As the owner of dvdrental I would like to have a web page so I can view the top 
 
 As the owner of dvdrental I would like to have a web page so I can view the top five rental films by language for a particular store.
 
+As a store manager at dvdrental I would like to have a web page that lists all the films that have won film awards for my store.
+
+As a store manager at dvdrental I would like to have a web page where I could add and update the list of available film awards.
+
+

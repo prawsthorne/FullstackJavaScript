@@ -3,7 +3,7 @@
     <body>
         <%- include('./partials/nav.ejs') %>
         <div class="create content">
-            <form action="/languages" method="PATCH">
+            <form action="/languages/<%= locals.theId %>?_method=PATCH" method="POST">
                 <label>Edit Language:
                     <input type="text" id="<%= locals.theId %>" name="language" value="<%= locals.theLanguage %>" required>
                 </label>

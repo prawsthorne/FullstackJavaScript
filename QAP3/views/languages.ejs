@@ -9,7 +9,8 @@
                     <% languages.forEach(language => { %> 
                         <%=language.name %>:
                         <a href="<%=language.language_id%>/edit?language=<%=language.name%>">edit</a>&nbsp;
-                        <a href="<%=language.language_id%>/delete?language=<%=language.name%>">delete</a></br>
+                        <a href="<%=language.language_id%>/delete?language=<%=language.name%>">delete</a>
+                        <a href="<%=language.language_id%>/replace?language=<%=language.name%>">replace</a></br>
                     <% }) %>
                 <% } %>
                 <label>Add Language:

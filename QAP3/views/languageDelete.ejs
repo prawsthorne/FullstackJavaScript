@@ -3,7 +3,7 @@
     <body>
         <%- include('./partials/nav.ejs') %>
         <div class="create content">
-            <form action="/languages" method="DELETE">
+            <form action="/languages/<%= locals.theId %>?_method=DELETE" method="POST">
                 <label>Are you sure you want to delete this Language?
                     <input type="text" id="<%= locals.theId %>" name="language" value="<%= locals.theLanguage %>" readonly>
                 </label>
