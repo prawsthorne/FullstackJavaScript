@@ -26,7 +26,7 @@ router.get('/:id/delete', async (req, res) => {
 });
 
 router.get('/:id/replace', async (req, res) => {
-        console.log('Replace : ' + req.params.id);
+ //       console.log('Replace : ' + req.params.id);
         res.render('languagePut.ejs', {theLanguage: req.query.language, theId: req.params.id});
     });
 
@@ -39,13 +39,13 @@ router.post('/', async (req, res) => {
 // Therefore, <form method="PUT" ...> doesn't work, but it does work for RESTful API
 
 router.put('/:id', async (req, res) => {
-    console.log('put: ' + req.params.id);
+  //  console.log('put: ' + req.params.id);
     await languagesDal.putLanguage(req.params.id, req.body.language);
     res.redirect('/languages/');
 });
 
 router.patch('/:id', async (req, res) => {
-    console.log('patch: ' + req.params.id + ' = ' + req.body.language);
+ //   console.log('patch: ' + req.params.id + ' = ' + req.body.language);
     await languagesDal.patchLanguage(req.params.id, req.body.language);
     res.redirect('/languages/');
 });
