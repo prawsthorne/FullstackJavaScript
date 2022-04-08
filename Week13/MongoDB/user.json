@@ -1,0 +1,32 @@
+{
+    "userID": "2",
+    "userData": {
+        "firstName": "Fetles",
+        "lastName": "Brankir",
+        "number":{
+            "phNumber": "7099999991",
+            "cellNumber": "6048888888"
+        },
+        "address": {
+            "Geo": {
+                "latitude": 15.56,
+                "longtitude": -74.76
+            },
+            "city": "walley",
+            "state": "valley",
+            "contry": "Sidle"
+        },
+        "product": {
+            "game": {
+                "GTA": false,
+                "DOTA": true
+            },
+            "television": {
+                "TV": false,
+                "PlayStation": true,
+                "Xbox": true
+            }
+        }
+    },
+    "key": "GHJDfjdksWER"
+}

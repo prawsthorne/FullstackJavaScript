@@ -1,0 +1,67 @@
+[
+    {
+        "listing_url": "https://data.princeedwardisland.ca/Environment-and-Food/OD0026-Mussel-Monitoring-Program/b9z6-aq7f",
+        "name": "Mussel Monitoring Program",
+        "listing_id": "OD0026",
+        "description": "Data collected from the Mussel Monitoring Program. Information includes date collected, year, month, water temperature, mussel larvae concentration, mussel larvae minimum size, mussel larvae maximum size, mussel larvae pre set size (%), mussel larvae set size (%), Pseudo nitzschia cells), tunicate larvae - Ciona, tunicate larvae - Styela, Tunicate Larvae – Botryllus, Tunicate Larvae – Botrylloides.",
+        "last_updated": "2019-05-17",
+        "created_date": "2017-10-04",
+        "geographic_region": {
+            "country": "Canada",
+            "jurisdiction": "Prince Edward Island"
+        },
+        "owner": {
+            "organization": "Open Prince Edward Island",
+            "department": "Department of Agriculture and Fisheries"
+        },
+        "contact": {
+            "information": "Neil MacNair",
+            "email": "ngmacnir@gov.pe.ca"
+        },
+        "tags": ["aquaculture", "mussel", "monitoring"]
+    },
+    {
+        "listing_url": "https://data.princeedwardisland.ca/Environment-and-Food/OD0027-Oyster-Monitoring-Program-Results/xwxq-yd75",
+        "name": "Oyster Monitoring Program Results",
+        "listing_id": "OD0027",
+        "description": "Information collected from the Oyster Monitoring Program. Information includes sample collection site, date, time, water temperature, total oyster larvae, concentration, size range and larvae > 250. In the concentration L=Low M=Medium H=High V=Very High",
+        "last_updated": "2018-08-08",
+        "created_date": "2017-10-04",
+        "geographic_region": {
+            "country": "Canada",
+            "jurisdiction": "Prince Edward Island"
+        },
+        "owner": {
+            "organization": "Open Prince Edward Island",
+            "department": "Department of Agriculture and Fisheries"
+        },
+        "contact": {
+            "information": "Neil MacNair",
+            "email": "ngmacnir@gov.pe.ca"
+        },
+        "tags": ["fisheries", "aquaculture", "oyster", "monitoring"]
+    },
+    {
+        "listing_url": "https://data.novascotia.ca/Fishing-and-Aquaculture/Nova-Scotia-Marine-Aquaculture-Leases/h57h-p9mm",
+        "name": "Nova Scotia Marine Aquaculture Leases",
+        "listing_id": "None",
+        "description": "File contains all issued marine aquaculture leases along the coast of Nova Scotia. Fisheries and Aquaculture also provides a mapping tool for this data at: http://novascotia.ca/fish/aquaculture/site-mapping-tool/",
+        "last_updated": "2021-07-15",
+        "created_date": "2020-06-26",
+        "geographic_region": {
+            "country": "Canada",
+            "jurisdiction": "Nova Scotia"
+        },
+        "owner": {
+            "organization": "Open Data Nova Scotia",
+            "department": "Fisheries and Aquaculture"
+        },
+        "contact": {
+            "information": "TBD",
+            "email": "TBD"
+        },
+        "tags": ["fisheries", "aquaculture", "salmon", "trout", "oyster", "halibut", "mussel", "scallop", "clam", "char", "monitoring"]
+    }
+]
+
+    

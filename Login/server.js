@@ -2,21 +2,40 @@ if( process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 const express = require('express');
-const app = express();
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
 const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const uuid = require('uuid')
+const logins = require('./services/plogins') // use POSTGRESQL dal
+//const logins = require('./services/mlogins') // use MONGODB dal
 
-const initializePassport = require('./passport.config');
-initializePassport(
-    passport, 
-    email => users.find(user => user.email === email),
-    id => users.find(user => user.id === id),
-);
+const app = express();
 
-const users = [];
+passport.use(new localStrategy({ usernameField: 'email' }, async (email, password, done) => {
+    let user = await logins.getLoginByEmail(email);
+    if( user == null ) {
+        return done(null, false, {message: 'No user with that email.'})
+    }
+    try {
+        if( await bcrypt.compare(password, user.password)) {
+            return done(null, user); 
+        } else {
+            return done(null, false, {message: 'Incorrect password was entered.'});
+        }
+    } catch (error) {
+        return done(error);
+    }
+}))
+passport.serializeUser((user, done) => {
+    done(null, user._id)
+});
+passport.deserializeUser( async (id, done) => {
+    let user = await logins.getLoginById(id);
+    done(null, user);
+});
 
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
@@ -31,7 +50,7 @@ app.use(passport.session());
 app.use(methodOverride('_method'));
 
 app.get('/', checkAuthenticated, (req, res) => {
-    res.render('index.ejs', { name: req.user.name });
+    res.render('index.ejs', { name: req.user.username });
 });
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
@@ -51,17 +70,12 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 app.post('/register', checkNotAuthenticated, async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        users.push({
-            id: Date.now().toString(),
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword
-        });
+        let result = await logins.addLogin(req.body.name, req.body.email, hashedPassword, uuid.v4());
         res.redirect('/login');
-    } catch {
+    } catch(error) {
+        console.log(error);
         res.redirect('/register');
     }
-    console.log(users);
 });
 
 app.delete('/logout', (req, res) => {
