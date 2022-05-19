@@ -3,6 +3,11 @@ const router = express.Router();
 
 const { getAwardsByStoreId } = require('../services/awards.dal')
 
+router.get('/', (req, res) => {
+    res.write('eat me');
+    res.end();
+});
+
 router.get('/:id', async (req, res) => {
     let awards = await getAwardsByStoreId(req.params.id);
 // array with mock data for testing and UI development
