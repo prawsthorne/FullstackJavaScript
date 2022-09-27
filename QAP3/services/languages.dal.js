@@ -1,4 +1,4 @@
-const dal = require("./db");
+const dal = require("./pdb");
 
 var getLanguages = function() {
   return new Promise(function(resolve, reject) {

@@ -3,22 +3,26 @@ const fsPromises = require('fs').promises;
 const path = require('path');
 
 let init = `
-
 myapp init <command>
 
 Usage:
 
-myapp init --all          creates the folder structure and config file
-myapp init --mk           creates the folder structure
-myapp init --cat          creates the config file with default settings`;
+node init --all     creates the folder structure and config file
+node init --mk      creates the folder structure
+node init --cat          creates the config file with default settings`;
 
-if(fs.existsSync(path.join(__dirname, './views'))) {
-    fs.writeFile('./views/init.txt', init, (err) => {
-        if(err) console.log(err);
-        else console.log('Data written to init.txt file');
-    });
-} else {
-    fsPromises.mkdir(path.join(__dirname, 'views'));
+try {
+    if(fs.existsSync(path.join(__dirname, './views'))) {
+        fs.writeFile('./views/init.txt', init, (err) => {
+            if(err) console.log(err);
+            else console.log('Data written to init.txt file');
+        });
+    } else {
+        fsPromises.mkdir(path.join(__dirname, 'views'));
+        console.log('New views folder created.');
+    }
+} catch(err) {
+    console.log(err);
 }
 
 const config = { 

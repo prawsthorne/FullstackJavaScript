@@ -24,6 +24,7 @@ const crc32 = require('crc/crc32');
 const { format } = require('date-fns');
 
 const myArgs = process.argv.slice(2);
+if(DEBUG) console.log(`MyArgs = ` + myArgs);
 
 function tokenCount() {
     if(DEBUG) console.log('token.tokenCount()');
@@ -37,6 +38,7 @@ function tokenCount() {
 
 function newToken(username) {
     if(DEBUG) console.log('token.newToken()');
+    if(DEBUG) console.log('username is: ' + username);
 
     let newToken = JSON.parse(`{
         "created": "1969-01-31 12:30:00",
@@ -94,16 +96,17 @@ function addDays(date, days) {
 
 function tokenApp() {
     if(DEBUG) console.log('tokenApp()');
+    if(DEBUG) console.log(myArgs);
 
-    switch (myArgs[1]) {
+    switch (myArgs[0]) {
     case '--count':
         tokenCount();
         break;
     case '--new':
-        newToken(myArgs[2]);
+        newToken(myArgs[1]);
         break;
     case '--fetch':
-        fetchRecord(myArgs[2]);
+        fetchRecord(myArgs[1]);
         break;
     case '--help':
     case '--h':
@@ -115,7 +118,7 @@ function tokenApp() {
     }
 }
 
-//tokenApp();
+tokenApp();
 
 module.exports = {
     newToken,

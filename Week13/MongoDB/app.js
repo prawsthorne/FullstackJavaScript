@@ -1,9 +1,8 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
-
+var url = "mongodb+srv://peter:database@cluster0.q81ndcs.mongodb.net/test";
 MongoClient.connect(url, function(err, dstore) {
   if (err) throw err;
-  var dbo = dstore.db("mydb3");
+  var dbo = dstore.db("mydb2");
   var myobj = [
     { name: 'John', address: 'Highway 71'},
     { name: 'Peter', address: 'Lowstreet 4'},

@@ -1,11 +1,19 @@
 const express = require('express');
 const app = express();
+//const session = require('express-session');
 const methodOverride = require('method-override')
 
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true, }));
+/*
+app.use(session({
+    secret: 'cape broyle',
+    resave: false,
+    saveUninitialized: true,
+}));
+*/
 app.use(methodOverride('_method'));
 
 app.listen(PORT, () => {

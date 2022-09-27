@@ -1,14 +1,14 @@
-const fs = require('fs');
-const path = require('path');
+//const fs = require('fs');
+//const path = require('path');
 const express = require('express');
-const morgan = require('morgan')
+//const morgan = require('morgan')
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(morgan('short'));
+//app.use(morgan('short'));
 app.use(express.urlencoded({ extended: false }));
 
 const actressRouter = require('./routes/actress')

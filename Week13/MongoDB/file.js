@@ -9,7 +9,7 @@ MongoClient.connect(url, function(err, db) {
   let mockaroo = JSON.parse(mockData);  
 
   console.log(mockaroo); 
-  dbo.collection("mockaroo").insertMany(mockaroo, function(err, res) {
+  dbo.collection("mockaroo2").insertMany(mockaroo, function(err, res) {
     if (err) throw err;
     console.log("Number of documents inserted: " + res.insertedCount);
     db.close();

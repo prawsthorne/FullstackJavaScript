@@ -1,4 +1,4 @@
-const dal = require("./db");
+const dal = require("./pdb");
 
 var getStores = function() {
     return new Promise(function(resolve, reject) {

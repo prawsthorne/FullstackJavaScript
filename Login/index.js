@@ -5,8 +5,8 @@ const express = require('express')
 const uuid = require('uuid')
 const bcrypt = require('bcrypt');
 const app = express()
-const logins = require('./services/plogins') // use POSTGRESQL dal
-//const logins = require('./services/mlogins') // use MONGODB dal
+//const logins = require('./services/plogins') // use POSTGRESQL dal
+const logins = require('./services/mlogins') // use MONGODB dal
 const PORT = process.env.PORT || 3000;
 
 //app.use(express.urlencoded({ extended: false }));
@@ -30,11 +30,12 @@ app.get('/logins', async (req, res) => {
 });
 app.get('/logins/:id', async (req, res) => {
     let result = await logins.getLoginById(req.params.id);
+    console.log(req.params.id)
     if ( result == null ) {
         console.log('not found');
     } else {
         console.log(result);
-        res.json({ info: `login ` + result.username + ` was found with pk: ` + result.id });
+        res.json({ info: `login ` + result.username + ` was found.` });
     }
 });
 

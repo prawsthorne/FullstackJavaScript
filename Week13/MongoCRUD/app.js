@@ -1,9 +1,11 @@
 const { MongoClient } = require('mongodb');
 
 async function main() {
-    const uri = "mongodb://localhost:27017/";
-//    const filename = "./json/pei_listings.json";
-//    const filename = "./json/ns_listing.json";
+    //const uri = "mongodb://localhost:27017/";
+    const uri = "mongodb+srv://peter:database@cluster0.q81ndcs.mongodb.net/test";
+
+//    const filename = "./json/pei_listings.json"; // two listings
+//    const filename = "./json/ns_listing.json"; // one listing
     const filename = "./json/mixed_listings.json";
 
     const client = new MongoClient(uri);
@@ -36,7 +38,7 @@ main().catch(console.error);
 /**
  * Delete an Ocean Set listing with the given name.
  * Note: If more than one listing has the same name, only the first listing the database finds will be deleted.
- * @param {MongoClient} client A MongoClient that is connected to a cluster with the sample_airbnb database
+ * @param {MongoClient} client A MongoClient that is connected to a cluster
  * @param {string} nameOfListing The name of the listing you want to delete
  */
  async function deleteListingByListingId(client, IdOfListing) {
@@ -62,7 +64,7 @@ main().catch(console.error);
 /**
  * Print all the ocean set data listings greater than a given date
  * Note: If more than one listing is found, display all the listings
- * @param {MongoClient} client A MongoClient that is connected to a cluster with the sample_airbnb database
+ * @param {MongoClient} client A MongoClient that is connected to a cluster
  * @param {String} theDate The name of the listing you want to find
  */
  async function findListingsByCreatedDate(client, theDate) {
@@ -87,7 +89,7 @@ main().catch(console.error);
 /**
  * Print an ocean set data listing for the given name
  * Note: If more than one listing has the same name, only the first listing the database finds will be printed.
- * @param {MongoClient} client A MongoClient that is connected to a cluster with the sample_airbnb database
+ * @param {MongoClient} client A MongoClient that is connected to a cluster
  * @param {String} nameOfListing The name of the listing you want to find
  */
  async function findListingByName(client, nameOfListing) {
@@ -104,7 +106,7 @@ main().catch(console.error);
 /**
  * Print an ocean set data listing for the given listing id
  * Note: If more than one listing has the same name, only the first listing the database finds will be printed.
- * @param {MongoClient} client A MongoClient that is connected to a cluster with the sample_airbnb database
+ * @param {MongoClient} client A MongoClient that is connected to a cluster
  * @param {String} nameOfListing The name of the listing you want to find
  */
  async function findListingByListingId(client, ListingId) {
@@ -125,8 +127,8 @@ main().catch(console.error);
  */
 async function createListing(client, newListing) {
     const fs = require("fs");
-    let listings = await fs.promises.readFile(newListing);  
-    let theListing = await JSON.parse(listings); 
+    let listing = await fs.promises.readFile(newListing);  
+    let theListing = await JSON.parse(listing); 
     const result = await client.db("OceanSet").collection("listings").insertOne(theListing);
     console.log(`New listing created with the following id: ${result.insertedId}`);
 }
@@ -152,6 +154,6 @@ async function createListing(client, newListing) {
 async function listDatabases(client) {
     databasesList = await client.db().admin().listDatabases();
 
-    console.log("Databases:");
+ //   console.log("Databases:");
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };

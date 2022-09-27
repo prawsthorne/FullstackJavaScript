@@ -1,0 +1,23 @@
+    {
+        "listing_url": "https://data.novascotia.ca/Environment-and-Food/OD007-Weed-Monitoring-Program/b9z6-aq7f",
+        "name": "Seaweed Monitoring Program",
+        "listing_id": "OD007",
+        "description": "Data collected from the bottom of the great big sea",
+        "last_updated": "2019-05-17",
+        "created_date": "2016-08-14",
+        "geographic_region": {
+            "country": "Canada",
+            "jurisdiction": "Nova Scotia"
+        },
+        "owner": {
+            "organization": "Open NS",
+            "department": "Department of Agriculture and Fisheries"
+        },
+        "contact": {
+            "information": "Satnam Purewal",
+            "email": "spurewal@gov.ns.ca"
+        },
+        "tags": ["aquaculture", "weed", "monitoring"]
+    }
+
+    

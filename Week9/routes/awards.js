@@ -4,6 +4,8 @@ const { getAwards, getAwardsByFilmId } = require('../services/awards.dal')
 
 router.use(express.static('public'));
 
+// the root of the /awards route becomes the backslash / (localhost:3000/awards)
+// router.get('/awards', async (req, res) => {
 router.get('/', async (req, res) => {
     let awards = await getAwards();
     res.render('awards',{awards});

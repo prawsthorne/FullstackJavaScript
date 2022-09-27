@@ -1,0 +1,33 @@
+    {
+        "rental_id": 1,
+        "rental_date": "2019-05-17",
+        "return_date": "2019-06-14",
+        "inventory": {
+            "film": {
+                "title": "Baby Driver",
+                "description": "Awesome Heist Movie",
+                "release_year": "2018",
+                "rental_rate": 8.65,
+                "length": 110,
+                "rating": "PG"
+            },
+            "store": {
+                "name": "ALBERTA",
+                "address": "34 Grassy Drive, Lethbridge"
+            }
+        },
+        "customer": {
+            "full_name": "Leroy Jenkins",
+            "email": "firstmeme@gmail.com",
+            "phone": "(709)345-6789",
+            "address": "47 MySakila Drive, Lethbridge"
+        },
+        "staff": {
+            "full_name": "Mary Jenkins",
+            "email": "mjenkins@gmail.com",
+            "phone": "(709)543-9876",
+            "address": "67 Peace River Way, Lethbridge"
+        }
+    }
+
+    

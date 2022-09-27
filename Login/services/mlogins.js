@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const dal = require("./mdb");
 
 async function getLogins() {
@@ -22,19 +23,11 @@ async function getLoginByEmail(email) {
 async function getLoginById(id) {
   try {
     await dal.connect();
-    const result = dal.db("OceanSet").collection("logins").findOne({ "_id": id });
+    const result = dal.db("OceanSet").collection("logins").findOne({ _id: ObjectId(id) });
     return result;
   } catch(error) {
     console.log(error);
   }
-
-  let SQL = `SELECT * FROM public."Logins" WHERE id = $1`;
-  try {
-    let results = await dal.query(SQL, [id]);
-    return results.rows[0];
-  } catch (error) {
-    console.log(error);
-  } 
 };
 
 async function addLogin(name, email, password, uuidv4) {

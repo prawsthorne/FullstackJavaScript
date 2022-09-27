@@ -3,7 +3,7 @@ var url = "mongodb://localhost:27017/";
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
-  var dbo = db.db("mydb3");
+  var dbo = db.db("mycats");
   var myobj = {
     "userID": "2",
     "userData": {
@@ -22,12 +22,21 @@ MongoClient.connect(url, function(err, db) {
             "state": "gujarat",
             "contry": "india"
         },
-        "product": {
-            "game": {
+        "work": {
+            "Streets": {
+                "east-west": "Main St",
+                "north-south": "Water Street"
+            },
+            "city": "Corner Brook",
+            "province": "NL",
+            "floor": "6th"
+        },
+        "entertainment": {
+            "computer": {
                 "GTA": true,
                 "DOTA": true
             },
-            "television": {
+            "screen": {
                 "TV": true,
                 "PlayStation": true,
                 "Xbox": false
@@ -36,7 +45,7 @@ MongoClient.connect(url, function(err, db) {
     },
     "key": "ANbcsgYSIDncsSK"
 };
-  dbo.collection("users").insertOne(myobj, function(err, res) {
+  dbo.collection("pets").insertOne(myobj, function(err, res) {
     if (err) throw err;
     console.log("1 document inserted");
     db.close();

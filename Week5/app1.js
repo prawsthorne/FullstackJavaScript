@@ -15,9 +15,9 @@ function handler(req, res){
     // Here you could use a library to extract the form content
     // The Express.js web framework helpfully does just that
     // For simplicity's sake we will always respond with 'hello world' here
-    console.log(req);
-    var hello = req.body.hello;
-    //var hello = 'world';
+    //console.log(req);
+    //var hello = req.body.hello;
+    var hello = 'world';
     res.setHeader('Content-Type', 'text/html');
     res.writeHead(200);
     res.end("<html><body><h1>Hello "+hello+"!</h1></body></html>");

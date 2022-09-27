@@ -52,8 +52,13 @@ router.patch('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
 //    console.log('delete: ' + req.params.id);
-    await languagesDal.deleteLanguage(req.params.id);
-    res.redirect('/languages/');
+    try {
+        await languagesDal.deleteLanguage(req.params.id);
+        res.redirect('/languages/');
+    } catch {
+        res.render('503');
+        // log this error to an error log file.
+    }
 });
 
 module.exports = router
